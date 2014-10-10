@@ -1,12 +1,14 @@
 package com.tma.service;
 
+import java.util.concurrent.Callable;
+
 /**
  * ThreadPi: uses to calculation pi with bound, from nStart to nEnd
  * @author NghiTran
  * @version 1.1
  * @since 2014-10-08
  */
-public class ThreadPi implements Runnable {
+public class ThreadPi implements Callable<Double> {
 
     private double nEnd;
     private double nStart;
@@ -24,15 +26,26 @@ public class ThreadPi implements Runnable {
     /**
      * Calculation Pi from nStart to nEnd
      */
-    public void run() {
+//    public void run() {
+//
+//        double sign = (nStart % 2) == 0 ? 1.0 : -1.0;
+//
+//        for (double i = nStart; i <= nEnd; i++) {
+//            result += sign / (2 * i + 1);
+//            sign *= -1;
+//        }
+//
+//        FormulaPI._piVector.add(result*4);
+//    }
 
+    public Double call() throws Exception {
         double sign = (nStart % 2) == 0 ? 1.0 : -1.0;
 
-        for (double i = nStart; i < nEnd; i++) {
+        for (double i = nStart; i <= nEnd; i++) {
             result += sign / (2 * i + 1);
             sign *= -1;
         }
-
-        FormulaPI._piVector.add(result*4);
+        
+        return result;
     }
 }

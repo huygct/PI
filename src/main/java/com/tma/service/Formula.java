@@ -43,5 +43,5 @@ public interface Formula {
     /**
      * Start to calculation formula
      */
-    void calculation();
+    void calculate();
 }

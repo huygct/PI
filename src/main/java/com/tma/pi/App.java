@@ -104,11 +104,11 @@ public class App extends JPanel implements KeyListener, ActionListener {
                 checkPress = true;
 
                 double numberSize = 10000; // default numberSize is 10000
-                double threadBound = 3000;
+                double threadBound = numberSize;
                 try {
                     numberSize = Double.parseDouble(s[0]);
                     if (s.length == 1) {
-                        threadBound = 3000;
+                        threadBound = numberSize;
                     }
                     else if (s.length == 2) {
                         threadBound = Double.parseDouble(s[1]);
@@ -172,7 +172,7 @@ public class App extends JPanel implements KeyListener, ActionListener {
         // when Pressed Enter call to suspendThread() of Formula Object
         if (e.getKeyCode() == 10) {
             formula1.suspendThread();
-            System.out.println("Current Result: " + formula1.getResult());
+            System.out.println("Current Result: " + formula1.getResult()*4);
             System.out.println("................................................................................");
         }
         if (e.getKeyCode() == 83) {
@@ -231,10 +231,10 @@ public class App extends JPanel implements KeyListener, ActionListener {
 
                 Numbers number = new Numbers(numberSize, threadBound);
                 formula1.setNumber(number);
-                formula1.calculation();
+                formula1.calculate();
 
                 System.out.println("Finished all threads, PI = "
-                        + formula1.getResult());
+                        + formula1.getResult()*4);
                 System.out.println("@@@@@@@@@@@@@@@@@@@@@");
                 checkPress = false;
             }
