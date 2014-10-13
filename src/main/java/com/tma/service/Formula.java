@@ -13,28 +13,29 @@ public interface Formula {
     /**
      * Set number for formula
      * 
-     * @param number
+     * @param number is all what user input
      */
     void setNumber(Numbers number);
 
     /**
-     * Get number threads were run ~ size vector
+     * Get number threads were finish ~ size list
      * 
-     * @return i
+     * @return numberThreadFinish number Threads were finish
      */
-    double getI();
+    int getNumberThreadFinish();
 
     /**
      * Get result of formula
      * 
-     * @return result
+     * @return result is number PI
      */
     double getResult();
 
     /**
-     * Call to stop thread
+     * Get time run Application
+     * @return time run of application
      */
-    void suspendThread();
+    long getTimeRun();
 
     /**
      * Call to stop application
