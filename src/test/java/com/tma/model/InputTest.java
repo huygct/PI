@@ -14,11 +14,11 @@ import org.junit.Test;
  * @version 1.0
  * @since 2014-10-07
  */
-public class NumbersTest {
+public class InputTest {
 
-    Numbers number;
+    Input number;
     
-    public NumbersTest() {
+    public InputTest() {
     }
 
     @BeforeClass
@@ -32,7 +32,7 @@ public class NumbersTest {
     @Before
     public void setUp() throws Exception {
         // Create number
-        number = new Numbers(100.0, 30.0);
+        number = new Input(100.0, 30.0);
     }
 
     @After

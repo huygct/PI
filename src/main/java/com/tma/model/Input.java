@@ -6,13 +6,16 @@ package com.tma.model;
  * @version 1.1
  * @since 2014-10-07
  */
-public class Numbers {
-    
+public class Input {
+
+    // input number of calculate
     private double numberN;
+
+    // divide numberN to create many task, each calculating task  1 amount is called threadBound
     private double threadBound;
 
     // Constructor of Number
-    public Numbers(double numberN, double threadBound) {
+    public Input(double numberN, double threadBound) {
         this.numberN = numberN;
         this.threadBound = threadBound;
     }
