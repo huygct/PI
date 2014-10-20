@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 
 import com.tma.decorator.TimeFormulaPI;
 import com.tma.factory.FormulaFactory;
-import com.tma.model.Numbers;
+import com.tma.model.Input;
 import com.tma.service.Formula;
 
 /**
@@ -70,28 +70,28 @@ public class App extends JPanel implements KeyListener, ActionListener {
         // Button for Decorator to calculate pi and have time
         JButton buttonHaveTimeRun = new JButton("Start 1");
         buttonHaveTimeRun.addActionListener(new ActionListener() {
-            @Override
+
             public void actionPerformed(ActionEvent e) {
                 // Get value JTextField
                 String sNum = typingArea.getText();
                 String[] s = sNum.split("-");
                 checkPress = true;
 
-                double numberSize = 10000; // default numberSize is 10000
-                double threadBound = numberSize;
+                double quantityCalculate = 10000; // default quantityCalculate is 10000
+                double quantityCalculateInAThread = quantityCalculate;
                 try {
-                    numberSize = Double.parseDouble(s[0]);
+                    quantityCalculate = Double.parseDouble(s[0]);
                     if (s.length == 1) {
-                        threadBound = numberSize;
+                        quantityCalculateInAThread = quantityCalculate;
                     } else if (s.length == 2) {
-                        threadBound = Double.parseDouble(s[1]);
+                        quantityCalculateInAThread = Double.parseDouble(s[1]);
                     }
-                    if (threadBound > numberSize) {
+                    if (quantityCalculateInAThread > quantityCalculate) {
                         System.out.println("Thread bound must less than number N!");
                     } else {
-                        calculatePiHaveTime(numberSize, threadBound);
+                        calculatePiHaveTime(quantityCalculate, quantityCalculateInAThread);
                     }
-                    // System.out.println(numberSize + " - " +threadBound);
+                    // System.out.println(quantityCalculate + " - " +quantityCalculateInAThread);
                 } catch (Exception e2) {
                     System.out.println("Input must be number!");
                 }
@@ -108,21 +108,21 @@ public class App extends JPanel implements KeyListener, ActionListener {
                 String[] s = sNum.split("-");
                 checkPress = true;
 
-                double numberSize = 10000; // default numberSize is 10000
-                double threadBound = numberSize;
+                double quantityCalculate = 10000; // default quantityCalculate is 10000
+                double quantityCalculateInAThread = quantityCalculate;
                 try {
-                    numberSize = Double.parseDouble(s[0]);
+                    quantityCalculate = Double.parseDouble(s[0]);
                     if (s.length == 1) {
-                        threadBound = numberSize;
+                        quantityCalculateInAThread = quantityCalculate;
                     } else if (s.length == 2) {
-                        threadBound = Double.parseDouble(s[1]);
+                        quantityCalculateInAThread = Double.parseDouble(s[1]);
                     }
-                    if (threadBound > numberSize) {
+                    if (quantityCalculateInAThread > quantityCalculate) {
                         System.out.println("Thread bound must less than number N!");
                     } else {
-                        calculatePi(numberSize, threadBound);
+                        calculatePi(quantityCalculate, quantityCalculateInAThread);
                     }
-                    // System.out.println(numberSize + " - " +threadBound);
+                    // System.out.println(quantityCalculate + " - " +quantityCalculateInAThread);
                 } catch (Exception e2) {
                     System.out.println("Input must be number!");
                 }
@@ -242,10 +242,10 @@ public class App extends JPanel implements KeyListener, ActionListener {
      * threadPi and start it. Create thread name is printRunning, it is used to
      * print '*', that help we know application is running
      *
-     * @param numberSize  user input numberSize, calculate Pi from 0 to numberSize
-     * @param threadBound Bound of each thread, user will input it.
+     * @param quantityCalculate  user input quantityCalculate, calculate Pi from 0 to quantityCalculate
+     * @param quantityCalculateInAThread Bound of each thread, user will input it.
      */
-    private void calculatePi(final double numberSize, final double threadBound) {
+    private void calculatePi(final double quantityCalculate, final double quantityCalculateInAThread) {
 
         formulaPi = formulaFactory.getFormula("PI");
         // Create thread: printRunning
@@ -257,8 +257,8 @@ public class App extends JPanel implements KeyListener, ActionListener {
                     e.printStackTrace();
                 }
 
-                Numbers number = new Numbers(numberSize, threadBound);
-                formulaPi.setNumber(number);
+                Input input = new Input(quantityCalculate, quantityCalculateInAThread);
+                formulaPi.setInput(input);
 
                 Formula timeFormulaPI = new TimeFormulaPI(formulaPi);
                 timeFormulaPI.calculate();
@@ -291,7 +291,7 @@ public class App extends JPanel implements KeyListener, ActionListener {
         printRunning.start();
     }
 
-    private void calculatePiHaveTime(final double numberSize, final double threadBound) {
+    private void calculatePiHaveTime(final double quantityCalculate, final double quantityCalculateInAThread) {
 
         formulaPi = formulaFactory.getFormula("PI");
         // Create thread: printRunning
@@ -303,8 +303,8 @@ public class App extends JPanel implements KeyListener, ActionListener {
                     e.printStackTrace();
                 }
 
-                Numbers number = new Numbers(numberSize, threadBound);
-                formulaPi.setNumber(number);
+                Input input = new Input(quantityCalculate, quantityCalculateInAThread);
+                formulaPi.setInput(input);
 
                 formulaPi.calculate();
 

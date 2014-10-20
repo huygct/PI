@@ -3,27 +3,36 @@ package com.tma.decorator;
 import com.tma.service.Formula;
 
 /**
- * Used calculate formula Pi have time
- * Created by NghiTran on 12/10/2014.
+ * Used calculate formula Pi have time run
+ *
+ * @author  NghiTran
  * @version 1.0
  * @since 2014.10.12
  */
-public class TimeFormulaPI extends  FormulaDecorator{
+public class TimeFormulaPI extends FormulaDecorator {
 
     // Value time run
     private long timeRun = 0;
 
+    // Constructor inhered in FormulaDecorator
     public TimeFormulaPI(Formula decoratedFormula) {
         super(decoratedFormula);
     }
 
-    @Override
+    /**
+     * Get time run of app
+     *
+     * @return timeRun is time calculate of formula pi
+     */
     public long getTimeRun() {
         return timeRun;
     }
 
+    /**
+     * Calculate time and run formula
+     */
     @Override
-    public void calculate () {
+    public void calculate() {
         // time start
         long startTimeThread = System.currentTimeMillis();
 

@@ -1,6 +1,6 @@
 package com.tma.service;
 
-import com.tma.model.Numbers;
+import com.tma.model.Input;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.concurrent.*;
 
 /**
  * Formula PI. Calculation pi with many task. Then sum result each task
+ *
  * @author NghiTran
  * @version 1.0
  * @since 2014-10-07
@@ -32,7 +33,7 @@ public class FormulaPI implements Formula {
     /**
      * Number number is value n and thread bound that user input
      */
-    private Numbers number;
+    private Input input;
 
     /**
      * Constructor of FormulaPI
@@ -42,34 +43,36 @@ public class FormulaPI implements Formula {
     }
 
     /**
-     * method setNumber - set value for param number.
+     * method setInput - set value for param input.
      *
-     * @param number include: N and bound of a thread
+     * @param input include: numberOfCalculation and numberOfCalculationInAThread
      */
-    @Override
-    public void setNumber(Numbers number) {
-        this.number = number;
+    public void setInput(Input input) {
+        this.input = input;
     }
 
-    @Override
+    /**
+     * Get time run of application
+     *
+     * @return time run
+     */
     public long getTimeRun() {
         return 0;
     }
 
     /**
      * Get number threads were run
-     * @return numberThread is number thread finish, at the moment.
+     *
+     * @return numberThread is number thread finished.
      */
-    @Override
     public int getNumberThreadFinish() {
         int numberThread = 0;
         Future<Double> future;
         for (int i = 0; i < listResult.size(); i++) {
             future = listResult.get(i);
-            if(future.isDone()) {
+            if (future.isDone()) {
                 numberThread++;
-            }
-            else {
+            } else {
                 break;
             }
         }
@@ -81,18 +84,16 @@ public class FormulaPI implements Formula {
      *
      * @return result is number Pi
      */
-    @Override
     public double getResult() {
         double result = 0.0;
         Future<Double> future;
         for (int i = 0; i < listResult.size(); i++) {
             future = listResult.get(i);
             try {
-                if(future.isDone()) {
+                if (future.isDone()) {
                     // System.out.println(future.isDone() + " - " + i + " = " + future.get());
                     result += future.get();
-                }
-                else {
+                } else {
                     break;
                 }
             } catch (InterruptedException e) {
@@ -107,43 +108,43 @@ public class FormulaPI implements Formula {
     /**
      * Stop application
      */
-    @Override
     public void stopApp() {
         executor.shutdownNow();
     }
 
     /**
      * Formula to calculate PI: Sum ((-1)^n / (2n + 1)) with n from 0 to N
+     * from 0 to N --> 0 - n1, n1+1 - n2, n2+1 - n3, n3+1 - n
+     * create many task, each task calculate a bound
      */
-    @Override
     public void calculate() {
 
         listResult.clear();
 
-        double numberSize = number.getNumberN();
-        double nCalculation = number.getThreadBound();
+        double numberOfCalculation = input.getNumberOfCalculation();
+        double numberOfCalculationInAThread = input.getNumberOfCalculationInAThread();
 
         int nLoop;
-        if (nCalculation == 0) {
+        if (numberOfCalculationInAThread == 0) {
             nLoop = 1;
         } else {
-            nLoop = (int)((numberSize - numberSize % nCalculation) / nCalculation)
-                    + ((numberSize % nCalculation) != 0 ? 1 : 0);
+            nLoop = (int) ((numberOfCalculation - numberOfCalculation % numberOfCalculationInAThread) / numberOfCalculationInAThread)
+                    + ((numberOfCalculation % numberOfCalculationInAThread) != 0 ? 1 : 0);
         }
 
         // System.out.println(nLoop);
 
         double nStart = 0;
-        double nEnd = nCalculation;
+        double nEnd = numberOfCalculationInAThread;
         for (int i = 0; i < nLoop; i++) {
 
             if (i != 0) {
                 nStart = nEnd + 1;
-                nEnd = nEnd + nCalculation;
+                nEnd = nEnd + numberOfCalculationInAThread;
             }
 
             if (i == (nLoop - 1)) {
-                nEnd = numberSize;
+                nEnd = numberOfCalculation;
             }
 
             Callable<Double> worker = new TaskPi(nStart, nEnd);

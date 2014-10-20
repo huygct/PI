@@ -31,7 +31,7 @@ public class InputTest {
 
     @Before
     public void setUp() throws Exception {
-        // Create number
+        // Create input
         number = new Input(100.0, 30.0);
     }
 
@@ -39,29 +39,15 @@ public class InputTest {
     public void tearDown() throws Exception {
     }
 
-    // Test Method get numberN
+    // Test Method get numberOfCalculation
     @Test
-    public void testGetNumberN() {
-        assertEquals(100.0, number.getNumberN(), 0.01);
-    }
-
-    // Test Method set numberN
-    @Test
-    public void testSetNumberN() {
-        number.setNumberN(10000.0);
-        assertEquals(10000.0, number.getNumberN(), 0.001);
+    public void testGetNumberOfCalculation() {
+        assertEquals(100.0, number.getNumberOfCalculation(), 0.01);
     }
     
     // Test Method get threadBound
     @Test
-    public void testGetThreadBound() {
-        assertEquals(30, number.getThreadBound(), 0.001);
-    }
-    
-    // Test Method set threadBound
-    @Test
-    public void testSetThreadBound() {
-        number.setThreadBound(50.0);
-        assertEquals(50, number.getThreadBound(), 0.001);
+    public void testGetNumberOfCalculationInAThread() {
+        assertEquals(30, number.getNumberOfCalculationInAThread(), 0.001);
     }
 }

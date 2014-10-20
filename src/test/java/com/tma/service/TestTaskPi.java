@@ -18,13 +18,14 @@ public class TestTaskPi {
 
     @Before
     public void setUp() throws Exception {
+        // bound of thread is 0 to 100000.0
         taskPi = new TaskPi(0, 1000000.0);
     }
 
     // Test run
     @Test
     public void testRun() throws Exception  {
-        double result = taskPi.call();
+        taskPi.call();
         assertEquals(3.14, taskPi.getResult()*4, 0.01);
     }
 

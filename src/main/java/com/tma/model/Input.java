@@ -1,38 +1,30 @@
 package com.tma.model;
 
 /**
- * Class Number: defined formula's components
+ * Class Input: defined formula's components
  * @author NghiTran
  * @version 1.1
  * @since 2014-10-07
  */
 public class Input {
 
-    // input number of calculate
-    private double numberN;
+    // input quantity calculate
+    private final double numberOfCalculation;
 
-    // divide numberN to create many task, each calculating task  1 amount is called threadBound
-    private double threadBound;
+    // divide numberOfCalculation to create many task, each calculating task  1 amount is called numberOfCalculationInAThread
+    private final double numberOfCalculationInAThread;
 
     // Constructor of Number
-    public Input(double numberN, double threadBound) {
-        this.numberN = numberN;
-        this.threadBound = threadBound;
+    public Input(double quantityCalculate, double quantityCalculateInAThread) {
+        this.numberOfCalculation = quantityCalculate;
+        this.numberOfCalculationInAThread = quantityCalculateInAThread;
     }
 
-    public double getNumberN() {
-        return numberN;
+    public double getNumberOfCalculation() {
+        return numberOfCalculation;
     }
 
-    public void setNumberN(double numberN) {
-        this.numberN = numberN;
-    }
-
-    public double getThreadBound() {
-        return threadBound;
-    }
-
-    public void setThreadBound(double threadBound) {
-        this.threadBound = threadBound;
+    public double getNumberOfCalculationInAThread() {
+        return numberOfCalculationInAThread;
     }
 }

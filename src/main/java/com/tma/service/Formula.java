@@ -1,6 +1,6 @@
 package com.tma.service;
 
-import com.tma.model.Numbers;
+import com.tma.model.Input;
 
 /**
  * Interface for all formula
@@ -13,9 +13,9 @@ public interface Formula {
     /**
      * Set number for formula
      * 
-     * @param number is all what user input
+     * @param input is all what user input
      */
-    void setNumber(Numbers number);
+    void setInput(Input input);
 
     /**
      * Get number threads were finish ~ size list
