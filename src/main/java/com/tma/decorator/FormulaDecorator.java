@@ -37,8 +37,4 @@ public abstract class FormulaDecorator implements Formula{
     public void stopApp() {
 
     }
-
-    public void calculate() {
-        decoratedFormula.calculate();
-    }
 }
