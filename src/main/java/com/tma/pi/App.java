@@ -68,7 +68,7 @@ public class App extends JPanel implements KeyListener, ActionListener {
         button.addActionListener(this);
 
         // Button for Decorator to calculate pi and have time
-        JButton buttonHaveTimeRun = new JButton("Start 1");
+        JButton buttonHaveTimeRun = new JButton("Start 2");
         buttonHaveTimeRun.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -99,7 +99,7 @@ public class App extends JPanel implements KeyListener, ActionListener {
         });
 
         // Button for calculate Pi normal
-        JButton buttonStart = new JButton("Start 2");
+        JButton buttonStart = new JButton("Start 1");
         buttonStart.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -156,8 +156,8 @@ public class App extends JPanel implements KeyListener, ActionListener {
         add(typingArea, BorderLayout.PAGE_START);
         add(scrollPane, BorderLayout.CENTER);
         add(button, BorderLayout.PAGE_END);
-        add(buttonStart, BorderLayout.EAST);
-        add(buttonHaveTimeRun, BorderLayout.WEST);
+        add(buttonStart, BorderLayout.WEST);
+        add(buttonHaveTimeRun, BorderLayout.EAST);
     }
 
     /**
@@ -245,7 +245,7 @@ public class App extends JPanel implements KeyListener, ActionListener {
      * @param quantityCalculate  user input quantityCalculate, calculate Pi from 0 to quantityCalculate
      * @param quantityCalculateInAThread Bound of each thread, user will input it.
      */
-    private void calculatePi(final double quantityCalculate, final double quantityCalculateInAThread) {
+    private void calculatePiHaveTime(final double quantityCalculate, final double quantityCalculateInAThread) {
 
         formulaPi = formulaFactory.getFormula("PI");
         // Create thread: printRunning
@@ -291,7 +291,7 @@ public class App extends JPanel implements KeyListener, ActionListener {
         printRunning.start();
     }
 
-    private void calculatePiHaveTime(final double quantityCalculate, final double quantityCalculateInAThread) {
+    private void calculatePi(final double quantityCalculate, final double quantityCalculateInAThread) {
 
         formulaPi = formulaFactory.getFormula("PI");
         // Create thread: printRunning
