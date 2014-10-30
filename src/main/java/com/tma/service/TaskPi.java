@@ -18,6 +18,11 @@ public class TaskPi implements Callable<Double> {
     // result after run thread.
     private double result = 0;
 
+    /**
+     * Constructor for task
+     * @param nStart number first
+     * @param nEnd number end in space calculator
+     */
     public TaskPi(double nStart, double nEnd) {
         this.nStart = nStart;
         this.nEnd = nEnd;
