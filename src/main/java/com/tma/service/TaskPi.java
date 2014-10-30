@@ -11,8 +11,11 @@ import java.util.concurrent.Callable;
  */
 public class TaskPi implements Callable<Double> {
 
-    private double nEnd;
+    // nStart: defined the number first in space calculate
     private double nStart;
+    // nEnd: the number end in space calculate
+    private double nEnd;
+    // result after run thread.
     private double result = 0;
 
     public TaskPi(double nStart, double nEnd) {
