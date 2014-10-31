@@ -81,6 +81,8 @@ public class FormulaPI implements Formula {
 
     /**
      * Get result of formulaPI
+     * Check List<Future<Double>>, while future.isDone == true, get result from future and plus it into result.
+     * If future.isDone == false is break;
      *
      * @return result is number Pi
      */
@@ -107,6 +109,7 @@ public class FormulaPI implements Formula {
 
     /**
      * Stop application
+     * executor is ThreadPool. executor call shutdownNow to stop application
      */
     public void stopApp() {
         executor.shutdownNow();
@@ -116,6 +119,10 @@ public class FormulaPI implements Formula {
      * Formula to calculate PI: Sum ((-1)^n / (2n + 1)) with n from 0 to N
      * from 0 to N --> 0 - n1, n1+1 - n2, n2+1 - n3, n3+1 - n
      * create many task, each task calculate a bound
+     * numberOfCalculation is N
+     * numberOfCalculationInAThread is [0 - n1] or [n1+1 - n2] ...
+     * TaskPi is a Callable, it will implement work and return result, result will save into List<Future<Double>>
+     * Create a ThreadPool contains number Thread to implement TaskPi.
      */
     public void calculate() {
 

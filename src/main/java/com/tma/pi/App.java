@@ -183,7 +183,7 @@ public class App extends JPanel implements KeyListener, ActionListener {
         JFrame.setDefaultLookAndFeelDecorated(true);
 
         // Create and set up the window.
-        JFrame frame = new JFrame("KeyEventDemo");
+        JFrame frame = new JFrame("PI");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Create and set up the content pane.

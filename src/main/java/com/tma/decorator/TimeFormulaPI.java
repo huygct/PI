@@ -38,6 +38,7 @@ public class TimeFormulaPI extends FormulaDecorator {
 
         decoratedFormula.calculate();
 
+        // time end
         timeRun = System.currentTimeMillis() - startTimeThread;
     }
 }
