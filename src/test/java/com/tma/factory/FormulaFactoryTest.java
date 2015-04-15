@@ -7,10 +7,10 @@ import org.junit.Test;
 
 /**
  * Test for class FormulaPI
- * 
- * @author NghiTran
+ *
+ * @author  NghiTran
  * @version 1.0
- * @since 2014-10-07
+ * @since 2014.12.26
  */
 public class FormulaFactoryTest {
 

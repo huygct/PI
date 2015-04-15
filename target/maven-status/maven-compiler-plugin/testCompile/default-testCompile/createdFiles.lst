@@ -1,0 +1,7 @@
+com\tma\leibniz\TestTaskPi.class
+com\tma\factory\FormulaFactoryTest.class
+com\tma\decorator\FormulaDecoratorTest.class
+com\tma\pi\AppTest.class
+com\tma\decorator\TimeFormulaPITest.class
+com\tma\leibniz\FormulaPITest.class
+com\tma\leibniz\InputImplTest.class

@@ -1,14 +1,14 @@
 package com.tma.factory;
 
 import com.tma.service.Formula;
-import com.tma.service.FormulaPI;
+import com.tma.leibniz.FormulaPI;
 
 /**
- * Factory design partern
+ * Factory design pattern
  * this class help create a Formula object with passing param is Formula's type.
- * @author NghiTran
+ * @author  NghiTran
  * @version 1.0
- * @since 2014-10-07
+ * @since 2014.12.26
  */
 
 public class FormulaFactory {

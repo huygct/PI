@@ -1,13 +1,13 @@
-package com.tma.service;
+package com.tma.leibniz;
 
 import java.util.concurrent.Callable;
 
 /**
  * TaskPi: uses to calculation pi with bound, from nStart to nEnd
  *
- * @author NghiTran
- * @version 1.1
- * @since 2014-10-08
+ * @author  NghiTran
+ * @version 1.0
+ * @since 2014.12.26
  */
 public class TaskPi implements Callable<Double> {
 

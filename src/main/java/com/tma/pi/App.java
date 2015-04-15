@@ -1,34 +1,22 @@
 package com.tma.pi;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.PrintStream;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
 import com.tma.decorator.TimeFormulaPI;
 import com.tma.factory.FormulaFactory;
-import com.tma.model.Input;
+import com.tma.leibniz.InputImpl;
 import com.tma.service.Formula;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.PrintStream;
+
+import javax.swing.*;
 
 /**
  * Create GUI and run Application
- *
- * @author NghiTran
- * @version 1.0
- * @since 2014-10-07
+ * Created by Nghi Tran on 4/15/2015.
  */
-public class App extends JPanel implements KeyListener, ActionListener {
+public class App extends JPanel implements ActionListener {
 
     /**
      * serialVersion
@@ -36,14 +24,14 @@ public class App extends JPanel implements KeyListener, ActionListener {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Create formulaFactory
-     */
-    FormulaFactory formulaFactory = new FormulaFactory();
-
-    /**
      * Create formula Pi
      */
     Formula formulaPi;
+
+    /**
+     * Create formulaFactory
+     */
+    FormulaFactory formulaFactory = new FormulaFactory();
 
     /**
      * JTextArea where print information and result calculation
@@ -53,7 +41,18 @@ public class App extends JPanel implements KeyListener, ActionListener {
     /**
      * JTextField - value input
      */
-    JTextField typingArea;
+    JTextField typingArea_n = new JTextField(20);;
+    JTextField typingArea_numberOfAThread = new JTextField(20);;
+    JLabel jLabel1 = new JLabel("Number n of Pi Formula: ");;
+    JLabel jLabel2 = new JLabel("Number of calculation in a Thread: ");;
+    JPanel panel1 = new JPanel();
+    JPanel panel2 = new JPanel();
+    JPanel panel3 = new JPanel();
+    JPanel grid = new JPanel(new GridLayout(3,1));
+
+    JButton buttonStart = new JButton("Start");
+    JButton buttonStop = new JButton("Stop");
+    JButton buttonResultCurrent = new JButton("Current Result");
 
     // check press key
     boolean checkPress = false;
@@ -68,59 +67,30 @@ public class App extends JPanel implements KeyListener, ActionListener {
         button.addActionListener(this);
 
         // Button for Decorator to calculate pi and have time
-        JButton buttonHaveTimeRun = new JButton("Start 2");
-        buttonHaveTimeRun.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                // Get value JTextField
-                String sNum = typingArea.getText();
-                String[] s = sNum.split("-");
-                checkPress = true;
-
-                double quantityCalculate = 10000; // default quantityCalculate is 10000
-                double quantityCalculateInAThread = quantityCalculate;
-                try {
-                    quantityCalculate = Double.parseDouble(s[0]);
-                    if (s.length == 1) {
-                        quantityCalculateInAThread = quantityCalculate;
-                    } else if (s.length == 2) {
-                        quantityCalculateInAThread = Double.parseDouble(s[1]);
-                    }
-                    if (quantityCalculateInAThread > quantityCalculate) {
-                        System.out.println("Thread bound must less than number N!");
-                    } else {
-                        calculatePiHaveTime(quantityCalculate, quantityCalculateInAThread);
-                    }
-                    // System.out.println(quantityCalculate + " - " +quantityCalculateInAThread);
-                } catch (Exception e2) {
-                    System.out.println("Input must be number!");
-                }
-            }
-        });
-
-        // Button for calculate Pi normal
-        JButton buttonStart = new JButton("Start 1");
         buttonStart.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 // Get value JTextField
-                String sNum = typingArea.getText();
-                String[] s = sNum.split("-");
                 checkPress = true;
 
                 double quantityCalculate = 10000; // default quantityCalculate is 10000
                 double quantityCalculateInAThread = quantityCalculate;
                 try {
-                    quantityCalculate = Double.parseDouble(s[0]);
-                    if (s.length == 1) {
-                        quantityCalculateInAThread = quantityCalculate;
-                    } else if (s.length == 2) {
-                        quantityCalculateInAThread = Double.parseDouble(s[1]);
-                    }
-                    if (quantityCalculateInAThread > quantityCalculate) {
-                        System.out.println("Thread bound must less than number N!");
+                    quantityCalculate = Double.parseDouble(typingArea_n.getText());
+                    quantityCalculateInAThread = Double.parseDouble(typingArea_numberOfAThread.getText());
+                    if (quantityCalculate < 0 || quantityCalculateInAThread < 0) {
+                        System.out.println("Input must be a number >= 0 ");
                     } else {
-                        calculatePi(quantityCalculate, quantityCalculateInAThread);
+                        if (quantityCalculateInAThread == 0) {
+                            quantityCalculateInAThread = quantityCalculate;
+                        }
+
+                        if (quantityCalculateInAThread > quantityCalculate) {
+                            System.out.println("Number of calculation in a thread must less than number N!");
+                        } else {
+                            calculatePi(quantityCalculate, quantityCalculateInAThread);
+                            checkPress = false;
+                        }
                     }
                     // System.out.println(quantityCalculate + " - " +quantityCalculateInAThread);
                 } catch (Exception e2) {
@@ -129,9 +99,46 @@ public class App extends JPanel implements KeyListener, ActionListener {
             }
         });
 
-        typingArea = new JTextField(20);
-        typingArea.addKeyListener(this);
-        typingArea.setText("1000000000-30000000");
+        // Button to stop calculate Pi
+//        buttonStop.setEnabled(false);
+        buttonStop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                formulaPi.stopApp();
+                buttonStart.setEnabled(true);
+                buttonStop.setEnabled(false);
+                buttonResultCurrent.setEnabled(false);
+            }
+        });
+
+        // Button to get result current
+//        buttonResultCurrent.setEnabled(false);
+        buttonResultCurrent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out
+                        .println("\n..............................CURRENT...............................");
+                System.out.println("Finished from 0 to " + (long)formulaPi.getNumberFinish() + ", current PI = "
+                        + formulaPi.getResult() * 4);
+                System.out.println("................................................................................");
+            }
+        });
+
+        typingArea_n.setText("1000000000");
+        typingArea_numberOfAThread.setText("30000000");
+        panel1.add(jLabel1);
+        panel1.add(typingArea_n);
+
+        panel2.add(buttonStart);
+        panel2.add(buttonResultCurrent);
+        panel2.add(buttonStop);
+
+        panel3.add(jLabel2);
+        panel3.add(typingArea_numberOfAThread);
+
+        grid.add(panel1);
+        grid.add(panel3);
+        grid.add(panel2);
 
         // Uncomment this if you wish to turn off focus
         // traversal. The focus subsystem consumes
@@ -139,7 +146,7 @@ public class App extends JPanel implements KeyListener, ActionListener {
         // If you uncomment the following line of code, this
         // disables focus traversal and the Tab events will
         // become available to the key event listener.
-        // typingArea.setFocusTraversalKeysEnabled(false);
+        // typingArea_n.setFocusTraversalKeysEnabled(false);
 
         displayArea = new JTextArea();
         displayArea.setEditable(false);
@@ -153,11 +160,11 @@ public class App extends JPanel implements KeyListener, ActionListener {
         JScrollPane scrollPane = new JScrollPane(displayArea);
         scrollPane.setPreferredSize(new Dimension(375, 325));
 
-        add(typingArea, BorderLayout.PAGE_START);
+        add(grid, BorderLayout.PAGE_START);
         add(scrollPane, BorderLayout.CENTER);
         add(button, BorderLayout.PAGE_END);
-        add(buttonStart, BorderLayout.WEST);
-        add(buttonHaveTimeRun, BorderLayout.EAST);
+        // add(buttonStart_NotTime, BorderLayout.WEST);
+        // add(buttonStart, BorderLayout.EAST);
     }
 
     /**
@@ -180,7 +187,7 @@ public class App extends JPanel implements KeyListener, ActionListener {
      */
     private static void createAndShowGUI() {
         // Make sure we have nice window decorations.
-        JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame.setDefaultLookAndFeelDecorated(false);
 
         // Create and set up the window.
         JFrame frame = new JFrame("PI");
@@ -194,40 +201,6 @@ public class App extends JPanel implements KeyListener, ActionListener {
         // Display the window.
         frame.pack();
         frame.setVisible(true);
-    }
-
-    public void keyPressed(KeyEvent e) {
-        // displayInfo(e, "KEY TYPED: ");
-    }
-
-    public void keyReleased(KeyEvent e) {
-        if (checkPress == true) {
-            displayInfo(e);
-        }
-    }
-
-    public void keyTyped(KeyEvent e) {
-        // displayInfo(e, "KEY TYPED: ");
-    }
-
-    /**
-     * when pressed Enter Application will suspend and print result current,
-     * when pressed key 's' application will stop and print result
-     *
-     * @param e is Key event
-     */
-    private void displayInfo(KeyEvent e) {
-        // when Pressed Enter call to suspendThread() of Formula Object
-        if (e.getKeyCode() == 10) {
-            System.out
-                    .println("\n..............................CURRENT...............................");
-            System.out.println("Finished " + formulaPi.getNumberThreadFinish() + " threads, current PI = "
-                    + formulaPi.getResult() * 4);
-            System.out.println("................................................................................");
-        }
-        if (e.getKeyCode() == 83) {
-            formulaPi.stopApp();
-        }
     }
 
     /**
@@ -245,8 +218,7 @@ public class App extends JPanel implements KeyListener, ActionListener {
      * @param quantityCalculate  user input quantityCalculate, calculate Pi from 0 to quantityCalculate
      * @param quantityCalculateInAThread Bound of each thread, user will input it.
      */
-    private void calculatePiHaveTime(final double quantityCalculate, final double quantityCalculateInAThread) {
-
+    private void calculatePi(final double quantityCalculate, final double quantityCalculateInAThread) {
         formulaPi = formulaFactory.getFormula("PI");
         // Create thread: printRunning
         final Thread threadPi = new Thread(new Runnable() {
@@ -257,10 +229,10 @@ public class App extends JPanel implements KeyListener, ActionListener {
                     e.printStackTrace();
                 }
 
-                Input input = new Input(quantityCalculate, quantityCalculateInAThread);
+                InputImpl input = new InputImpl(quantityCalculate, quantityCalculateInAThread);
                 formulaPi.setInput(input);
 
-                Formula timeFormulaPI = new TimeFormulaPI(formulaPi);
+                TimeFormulaPI timeFormulaPI = new TimeFormulaPI(formulaPi);
                 timeFormulaPI.calculate();
                 long timRun = timeFormulaPI.getTimeRun();
                 // formula1.calculate();
@@ -268,63 +240,30 @@ public class App extends JPanel implements KeyListener, ActionListener {
                 System.out.println("\n+++++++++++++++++++++++++++++++++++");
                 System.out.println("Time finish: " + timRun);
                 System.out.println("+++++++++++++++++++++++++++++++++++");
-                System.out.println("Finished all " + formulaPi.getNumberThreadFinish() + " threads, PI = "
+                System.out.println("Completed, PI = "
                         + formulaPi.getResult() * 4);
-                System.out.println("@@@@@@@@@@@@@@@@@@@@@");
-                checkPress = false;
+
+                buttonStop.setEnabled(false);
+                buttonResultCurrent.setEnabled(false);
+                buttonStart.setEnabled(true);
             }
         });
         threadPi.start();
 
         Thread printRunning = new Thread(new Runnable() {
             public void run() {
+                buttonStop.setEnabled(true);
+                buttonResultCurrent.setEnabled(true);
+                buttonStart.setEnabled(false);
                 while (threadPi.isAlive()) {
                     try {
                         System.out.print("*");
                         Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-        printRunning.start();
-    }
-
-    private void calculatePi(final double quantityCalculate, final double quantityCalculateInAThread) {
-
-        formulaPi = formulaFactory.getFormula("PI");
-        // Create thread: printRunning
-        final Thread threadPi = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Thread.sleep(300);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                Input input = new Input(quantityCalculate, quantityCalculateInAThread);
-                formulaPi.setInput(input);
-
-                formulaPi.calculate();
-
-                System.out.println("\n+++++++++++++++++++++++++++++++++++");
-                System.out.println("Finished all " + formulaPi.getNumberThreadFinish() + " threads, PI = "
-                        + formulaPi.getResult() * 4);
-                System.out.println("@@@@@@@@@@@@@@@@@@@@@");
-                checkPress = false;
-            }
-        });
-        threadPi.start();
-
-        Thread printRunning = new Thread(new Runnable() {
-            public void run() {
-                while (threadPi.isAlive()) {
-                    try {
-                        System.out.print("*");
+                        System.out.print(".");
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        System.out.println("------------------- printRunning()");
+                        // e.printStackTrace();
                     }
                 }
             }

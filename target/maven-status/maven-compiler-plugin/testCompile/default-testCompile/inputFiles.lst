@@ -1,4 +1,7 @@
-D:\Temple\Pi\src\test\java\com\tma\factory\FormulaFactoryTest.java
-D:\Temple\Pi\src\test\java\com\tma\model\NumbersTest.java
-D:\Temple\Pi\src\test\java\com\tma\pi\AppTest.java
-D:\Temple\Pi\src\test\java\com\tma\service\FormulaPITest.java
+D:\Data Old\Git\PI\src\test\java\com\tma\factory\FormulaFactoryTest.java
+D:\Data Old\Git\PI\src\test\java\com\tma\leibniz\InputImplTest.java
+D:\Data Old\Git\PI\src\test\java\com\tma\decorator\FormulaDecoratorTest.java
+D:\Data Old\Git\PI\src\test\java\com\tma\decorator\TimeFormulaPITest.java
+D:\Data Old\Git\PI\src\test\java\com\tma\pi\AppTest.java
+D:\Data Old\Git\PI\src\test\java\com\tma\leibniz\FormulaPITest.java
+D:\Data Old\Git\PI\src\test\java\com\tma\leibniz\TestTaskPi.java

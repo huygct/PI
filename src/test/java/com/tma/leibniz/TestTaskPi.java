@@ -1,17 +1,18 @@
-package com.tma.service;
+package com.tma.leibniz;
 
 import static org.junit.Assert.*;
 
+import com.tma.leibniz.TaskPi;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
 *
-* @author Nghitran a test task pi
-* @version 1.0
-* @since 2014-10-09
-*
-*/
+ * @author  NghiTran
+ * @version 1.0
+ * @since 2014.12.26
+ */
+
 public class TestTaskPi {
 
     TaskPi taskPi;

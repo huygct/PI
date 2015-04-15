@@ -7,7 +7,7 @@ import com.tma.service.Formula;
  *
  * @author  NghiTran
  * @version 1.0
- * @since 2014.10.12
+ * @since 2014.12.26
  */
 public class TimeFormulaPI extends FormulaDecorator {
 

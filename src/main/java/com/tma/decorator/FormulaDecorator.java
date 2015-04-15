@@ -1,14 +1,16 @@
 package com.tma.decorator;
 
-import com.tma.model.Input;
 import com.tma.service.Formula;
+import com.tma.service.Input;
 
 /**
  * User Decorator pattern to create FormulaPI have time run
  * FormulaDecorator, abstract class  implement Formula
  * Created by NghiTran on 11/10/2014.
- * @ version 1.0
- * @ since 2014.10.14
+ *
+ * @author  NghiTran
+ * @version 1.0
+ * @since 2014.12.26
  */
 public abstract class FormulaDecorator implements Formula{
 
@@ -26,7 +28,7 @@ public abstract class FormulaDecorator implements Formula{
 
     }
 
-    public int getNumberThreadFinish() {
+    public double getNumberFinish() {
         return 0;
     }
 

@@ -1,13 +1,11 @@
 package com.tma.service;
 
-import com.tma.model.Input;
-
 /**
  * Interface for all formula
- * 
- * @author NghiTran
+ *
+ * @author  NghiTran
  * @version 1.0
- * @since 2014-10-07
+ * @since 2014.12.26
  */
 public interface Formula {
     /**
@@ -22,7 +20,7 @@ public interface Formula {
      * 
      * @return numberThreadFinish number Threads were finish
      */
-    int getNumberThreadFinish();
+    double getNumberFinish();
 
     /**
      * Get result of formula
@@ -30,12 +28,6 @@ public interface Formula {
      * @return result is number PI
      */
     double getResult();
-
-    /**
-     * Get time run Application
-     * @return time run of application
-     */
-    long getTimeRun();
 
     /**
      * Call to stop application

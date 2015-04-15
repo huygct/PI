@@ -1,0 +1,16 @@
+com\tma\factory\FormulaFactory.class
+com\tma\service\Formula.class
+com\tma\leibniz\FormulaPI.class
+com\tma\pi\App$1.class
+com\tma\decorator\TimeFormulaPI.class
+com\tma\leibniz\TaskPi.class
+com\tma\pi\App$4.class
+com\tma\pi\App$5.class
+com\tma\decorator\FormulaDecorator.class
+com\tma\pi\CustomOutputStream.class
+com\tma\service\Input.class
+com\tma\leibniz\InputImpl.class
+com\tma\pi\App.class
+com\tma\pi\App$2.class
+com\tma\pi\App$3.class
+com\tma\pi\App$6.class

@@ -1,6 +1,10 @@
-D:\Temple\Pi\src\main\java\com\tma\model\Numbers.java
-D:\Temple\Pi\src\main\java\com\tma\pi\CustomOutputStream.java
-D:\Temple\Pi\src\main\java\com\tma\factory\FormulaFactory.java
-D:\Temple\Pi\src\main\java\com\tma\service\FormulaPI.java
-D:\Temple\Pi\src\main\java\com\tma\service\Formula.java
-D:\Temple\Pi\src\main\java\com\tma\pi\App.java
+D:\Data Old\Git\PI\src\main\java\com\tma\leibniz\TaskPi.java
+D:\Data Old\Git\PI\src\main\java\com\tma\decorator\FormulaDecorator.java
+D:\Data Old\Git\PI\src\main\java\com\tma\decorator\TimeFormulaPI.java
+D:\Data Old\Git\PI\src\main\java\com\tma\pi\CustomOutputStream.java
+D:\Data Old\Git\PI\src\main\java\com\tma\leibniz\FormulaPI.java
+D:\Data Old\Git\PI\src\main\java\com\tma\factory\FormulaFactory.java
+D:\Data Old\Git\PI\src\main\java\com\tma\service\Formula.java
+D:\Data Old\Git\PI\src\main\java\com\tma\service\Input.java
+D:\Data Old\Git\PI\src\main\java\com\tma\pi\App.java
+D:\Data Old\Git\PI\src\main\java\com\tma\leibniz\InputImpl.java
