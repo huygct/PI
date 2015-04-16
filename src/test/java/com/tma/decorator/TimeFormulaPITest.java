@@ -1,7 +1,5 @@
 package com.tma.decorator;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -31,12 +29,10 @@ public class TimeFormulaPITest {
 
     @Test
     public void testCalculate() {
-//        fail("Not yet implemented");
     }
 
     @Test
     public void testGetTimeRun() {
-//        fail("Not yet implemented");
     }
 
 }

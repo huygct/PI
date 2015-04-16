@@ -6,11 +6,11 @@ import com.tma.service.Input;
 /**
  * User Decorator pattern to create FormulaPI have time run
  * FormulaDecorator, abstract class  implement Formula
- * Created by NghiTran on 11/10/2014.
+ * Created by NghiTran on 15/04/2015.
  *
  * @author  NghiTran
  * @version 1.0
- * @since 2014.12.26
+ * @since 2015.04.15
  */
 public abstract class FormulaDecorator implements Formula{
 
@@ -18,7 +18,7 @@ public abstract class FormulaDecorator implements Formula{
 
     /**
      * Create construction
-     * @param decoratedFormula is a formula used
+     * @param decoratedFormula is a formula
      */
     public FormulaDecorator (Formula decoratedFormula) {
         this.decoratedFormula = decoratedFormula;

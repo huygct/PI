@@ -32,7 +32,7 @@ public class InputImplTest {
     @Before
     public void setUp() throws Exception {
         // Create input
-        number = new InputImpl(100.0, 30.0);
+        number = new InputImpl(100000000.0, 30000.0);
     }
 
     @After
@@ -42,12 +42,12 @@ public class InputImplTest {
     // Test Method get numberOfCalculation
     @Test
     public void testGetNumberOfCalculation() {
-        assertEquals(100.0, number.getNumberOfCalculation(), 0.01);
+        assertEquals(100000000.0, number.getNumberOfCalculation(), 0.01);
     }
     
     // Test Method get threadBound
     @Test
     public void testGetNumberOfCalculationInAThread() {
-        assertEquals(30, number.getNumberOfCalculationInAThread(), 0.001);
+        assertEquals(30000.0, number.getNumberOfCalculationInAThread(), 0.001);
     }
 }

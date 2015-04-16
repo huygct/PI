@@ -10,7 +10,7 @@ import org.junit.Test;
  *
  * @author  NghiTran
  * @version 1.0
- * @since 2014.12.26
+ * @since 2014.04.15
  */
 public class FormulaFactoryTest {
 

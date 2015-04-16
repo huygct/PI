@@ -13,7 +13,7 @@ import java.util.concurrent.*;
  *
  * @author  NghiTran
  * @version 1.0
- * @since 2014.12.26
+ * @since 2015.04.15
  */
 public class FormulaPI implements Formula {
 
@@ -76,7 +76,6 @@ public class FormulaPI implements Formula {
             future = listResult.get(i);
             try {
                 if (future.isDone()) {
-                    // System.out.println(future.isDone() + " - " + i + " = " + future.get());
                     result += future.get();
                 } else {
                     break;
@@ -139,9 +138,13 @@ public class FormulaPI implements Formula {
                 nEnd = numberOfCalculation;
             }
 
-            Callable<Double> task = new TaskPi(nStart, nEnd);
-            Future<Double> submit = executor.submit(task);
-            listResult.add(submit);
+            try {
+                Callable<Double> task = new TaskPi(nStart, nEnd);
+                Future<Double> submit = executor.submit(task);
+                listResult.add(submit);
+            } catch (Throwable throwable) {
+                break;
+            }
         }
 
         // This will make the executor accept no new threads

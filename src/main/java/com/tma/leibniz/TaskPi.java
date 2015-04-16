@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
  *
  * @author  NghiTran
  * @version 1.0
- * @since 2014.12.26
+ * @since 2015.04.15
  */
 public class TaskPi implements Callable<Double> {
 
@@ -42,7 +42,6 @@ public class TaskPi implements Callable<Double> {
             result += sign / (2 * i + 1);
             sign *= -1;
         }
-        // System.out.println("%%%%% " +result);
         return result;
     }
 }

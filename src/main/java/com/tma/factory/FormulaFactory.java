@@ -8,7 +8,7 @@ import com.tma.leibniz.FormulaPI;
  * this class help create a Formula object with passing param is Formula's type.
  * @author  NghiTran
  * @version 1.0
- * @since 2014.12.26
+ * @since 2015.04.15
  */
 
 public class FormulaFactory {

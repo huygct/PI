@@ -42,9 +42,9 @@ public class App extends JPanel implements ActionListener {
      * JTextField - value input
      */
     JTextField typingArea_n = new JTextField(20);;
-    JTextField typingArea_numberOfAThread = new JTextField(20);;
-    JLabel jLabel1 = new JLabel("Number n of Pi Formula: ");;
-    JLabel jLabel2 = new JLabel("Number of calculation in a Thread: ");;
+    // JTextField typingArea_numberOfAThread = new JTextField(20);;
+    JLabel jLabel1 = new JLabel("N (0 < N <= 100000000000 ): ");;
+    JLabel jLabel2 = new JLabel("PI Calculation");;
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
     JPanel panel3 = new JPanel();
@@ -55,7 +55,7 @@ public class App extends JPanel implements ActionListener {
     JButton buttonResultCurrent = new JButton("Current Result");
 
     // check press key
-    boolean checkPress = false;
+    // boolean checkPress = false;
 
     /**
      * constructor of Application
@@ -71,28 +71,18 @@ public class App extends JPanel implements ActionListener {
 
             public void actionPerformed(ActionEvent e) {
                 // Get value JTextField
-                checkPress = true;
-
-                double quantityCalculate = 10000; // default quantityCalculate is 10000
-                double quantityCalculateInAThread = quantityCalculate;
+                double quantityCalculate;
+                double quantityCalculateInAThread = 300000;
                 try {
                     quantityCalculate = Double.parseDouble(typingArea_n.getText());
-                    quantityCalculateInAThread = Double.parseDouble(typingArea_numberOfAThread.getText());
-                    if (quantityCalculate < 0 || quantityCalculateInAThread < 0) {
-                        System.out.println("Input must be a number >= 0 ");
-                    } else {
-                        if (quantityCalculateInAThread == 0) {
-                            quantityCalculateInAThread = quantityCalculate;
-                        }
-
-                        if (quantityCalculateInAThread > quantityCalculate) {
-                            System.out.println("Number of calculation in a thread must less than number N!");
-                        } else {
-                            calculatePi(quantityCalculate, quantityCalculateInAThread);
-                            checkPress = false;
-                        }
+                    if (quantityCalculateInAThread > quantityCalculate) {
+                        quantityCalculateInAThread = quantityCalculate;
                     }
-                    // System.out.println(quantityCalculate + " - " +quantityCalculateInAThread);
+                    if (quantityCalculate < 0 || quantityCalculate > 100000000000L) {
+                        System.out.println("Input must be a number >= 0 and < 100000000000");
+                    } else {
+                        calculatePi(quantityCalculate, quantityCalculateInAThread);
+                    }
                 } catch (Exception e2) {
                     System.out.println("Input must be number!");
                 }
@@ -100,7 +90,6 @@ public class App extends JPanel implements ActionListener {
         });
 
         // Button to stop calculate Pi
-//        buttonStop.setEnabled(false);
         buttonStop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -111,8 +100,7 @@ public class App extends JPanel implements ActionListener {
             }
         });
 
-        // Button to get result current
-//        buttonResultCurrent.setEnabled(false);
+        // Button to get current result
         buttonResultCurrent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -125,7 +113,7 @@ public class App extends JPanel implements ActionListener {
         });
 
         typingArea_n.setText("1000000000");
-        typingArea_numberOfAThread.setText("30000000");
+        // typingArea_numberOfAThread.setText("30000000");
         panel1.add(jLabel1);
         panel1.add(typingArea_n);
 
@@ -134,10 +122,9 @@ public class App extends JPanel implements ActionListener {
         panel2.add(buttonStop);
 
         panel3.add(jLabel2);
-        panel3.add(typingArea_numberOfAThread);
 
-        grid.add(panel1);
         grid.add(panel3);
+        grid.add(panel1);
         grid.add(panel2);
 
         // Uncomment this if you wish to turn off focus

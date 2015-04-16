@@ -17,33 +17,31 @@ public class FormulaPITest {
         formulaPi = new FormulaPI();
         input = mock(InputImpl.class);
         formulaPi.setInput(input);
-        when(input.getNumberOfCalculation()).thenReturn(100000.0);
+        when(input.getNumberOfCalculation()).thenReturn(1000000000.0);
         when(input.getNumberOfCalculationInAThread()).thenReturn(30000.0);
+        formulaPi.calculate();
     }
 
     // Test constructor FormulaPI
     @Test
     public void testFormulaPI() {
-        assertEquals(0L, formulaPi.getResult(), 0.001);
     }
 
     //Test get Result
     @Test
     public void testGetResult() {
-        assertEquals(0L, formulaPi.getResult(), 0.001);
+        assertEquals(Math.PI, formulaPi.getResult()*4, 0.000000001);
     }
     
     // Test get number thread finish
     @Test
-    public void testgetNumberThreadFinish() {
-        formulaPi.calculate();
-        assertEquals(4, formulaPi.getNumberFinish());
+    public void testGetNumberThreadFinish() {
+        assertEquals(33334.0, (formulaPi.getNumberFinish()/input.getNumberOfCalculationInAThread()), 0.000000001);
     }
     
     // Test calculate
     @Test
     public void testCalulate() {
-        formulaPi.calculate();
-        assertEquals(3.14, formulaPi.getResult()*4, 0.01);
+        assertEquals(Math.PI, formulaPi.getResult()*4, 0.000000001);
     }
 }
